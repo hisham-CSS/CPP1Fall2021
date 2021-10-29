@@ -2,27 +2,87 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D), typeof(SpriteRenderer), typeof(Animator))]
 public class Player : MonoBehaviour
 {
+    public bool verbose = false;
+    public bool isGrounded;
+
+    Rigidbody2D rb;
+    SpriteRenderer sr;
+    Animator anim;
+
+    [SerializeField]
+    float speed;
+    [SerializeField]
+    int jumpForce;
+    [SerializeField]
+    float groundCheckRadius;
+
+    public LayerMask isGroundLayer;
+    public Transform groundCheck;
+
+    
+
+
+    
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
+
+        if (speed <= 0)
+        {
+            speed = 5.0f;
+            if (verbose)
+                Debug.Log("Speed value is garbage - setting default speed to 5");
+        }
+
+        if (jumpForce <= 0)
+        {
+            jumpForce = 300;
+            if (verbose)
+                Debug.Log("Jump Force value is garbage - setting default jump force to 300");
+        }
+
+        if (groundCheckRadius <= 0)
+        {
+            groundCheckRadius = 0.05f;
+            if (verbose)
+                Debug.Log("Ground check radius value is garbage - setting default ground check to 0.05");
+        }
+
+        if (!groundCheck)
+        {
+            if (verbose)
+                Debug.Log("Ground check transform is not set, please create empty gameobject and assign to groundcheck");
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-    }
+        float horizontalInput = Input.GetAxis("Horizontal");
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, isGroundLayer);
 
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        Debug.Log(collision.gameObject.name);
-    }
+        if (isGrounded && Input.GetButtonDown("Jump"))
+        {
+            rb.velocity = Vector2.zero;
+            rb.AddForce(Vector2.up * jumpForce);
+        }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Debug.Log(collision.gameObject.name);
+        Vector2 moveDirection = new Vector2(horizontalInput * speed, rb.velocity.y);
+        rb.velocity = moveDirection;
+
+        anim.SetFloat("speed", Mathf.Abs(horizontalInput));
+        anim.SetBool("isGrounded", isGrounded);
+
+
+
+        if (sr.flipX && horizontalInput > 0 || !sr.flipX && horizontalInput < 0)
+            sr.flipX = !sr.flipX;
     }
 }
