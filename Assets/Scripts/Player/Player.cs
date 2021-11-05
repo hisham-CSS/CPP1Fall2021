@@ -65,7 +65,10 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
+        float horizontalInput = 0;
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Fire"))
+            horizontalInput = Input.GetAxis("Horizontal");
+
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, isGroundLayer);
 
         if (isGrounded && Input.GetButtonDown("Jump"))
