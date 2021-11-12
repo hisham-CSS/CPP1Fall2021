@@ -28,6 +28,7 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //part of the lab will go here
+        //if (collision.gameObject.layer == 3)
+        //    Destroy(gameObject);
     }
 }

@@ -5,6 +5,18 @@ TextureImporter:
   - first:
       213: -4424372450760166762
     second: DonutPlains1
+  - first:
+      213: -7698091877536220419
+    second: BigCoin
+  - first:
+      213: -6223913005026926526
+    second: Coin
+  - first:
+      213: -8251548219702976207
+    second: Life
+  - first:
+      213: -3135234623664698759
+    second: Powerup
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -110,6 +122,90 @@ TextureImporter:
       bones: []
       spriteID: 6927a6682b87992c0800000000000000
       internalID: -4424372450760166762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigCoin
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 134
+        width: 16
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfa322f3932ea2590800000000000000
+      internalID: -7698091877536220419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Coin
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 139
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 240af6ef81830a9a0800000000000000
+      internalID: -6223913005026926526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Life
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 84
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 131e89ddc9c9c7d80800000000000000
+      internalID: -8251548219702976207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Powerup
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 116
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97ac5f098b86d74d0800000000000000
+      internalID: -3135234623664698759
       vertices: []
       indices: 
       edges: []

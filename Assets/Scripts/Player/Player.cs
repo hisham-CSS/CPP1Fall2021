@@ -19,12 +19,42 @@ public class Player : MonoBehaviour
     [SerializeField]
     float groundCheckRadius;
 
+
+    int _score = 0;
+    int _lives = 1;
+
+    public int maxLives = 3;
+
+    public int score
+    {
+        get { return _score; }
+        set 
+        { 
+            _score = value;
+            Debug.Log("Score changed to " + _score);
+        }
+    }
+
+    public int lives
+    {
+        get { return _lives; }
+        set 
+        { 
+            _lives = value;
+            if (_lives > maxLives)
+                _lives = maxLives;
+
+            //if (_lives < 0)
+                //gameover stuff can go here
+
+            Debug.Log("Lives changed to " + _lives);
+        }
+    }
+
     public LayerMask isGroundLayer;
     public Transform groundCheck;
 
-    
-
-
+    bool coroutineRunning = false;
     
 
     // Start is called before the first frame update
@@ -87,5 +117,30 @@ public class Player : MonoBehaviour
 
         if (sr.flipX && horizontalInput > 0 || !sr.flipX && horizontalInput < 0)
             sr.flipX = !sr.flipX;
+    }
+
+    public void StartJumpForceChange()
+    {
+        if (!coroutineRunning)
+        {
+            StartCoroutine("JumpForceChange");
+        }
+        else
+        {
+            StopCoroutine("JumpForceChange");
+            jumpForce /= 2;
+            StartCoroutine("JumpForceChange");
+        }
+    }
+
+    IEnumerator JumpForceChange()
+    {
+        coroutineRunning = true;
+        jumpForce *= 2;
+
+        yield return new WaitForSeconds(5.0f);
+        
+        jumpForce /= 2;
+        coroutineRunning = false;
     }
 }
