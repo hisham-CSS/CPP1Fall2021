@@ -28,6 +28,20 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            if (gameObject.CompareTag("PlayerProjectile"))
+            {
+                Enemy e = collision.gameObject.GetComponent<Enemy>();
+
+                if (e)
+                    e.TakeDamage(1);
+
+                Destroy(gameObject);
+            }
+            
+        }
         //if (collision.gameObject.layer == 3)
         //    Destroy(gameObject);
     }

@@ -17,6 +17,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     int jumpForce;
     [SerializeField]
+    int bounceForce;
+
+    [SerializeField]
     float groundCheckRadius;
 
 
@@ -78,6 +81,13 @@ public class Player : MonoBehaviour
                 Debug.Log("Jump Force value is garbage - setting default jump force to 300");
         }
 
+        if (bounceForce <= 0)
+        {
+            bounceForce = 100;
+            if (verbose)
+                Debug.Log("Bounce Force value is garbage - setting default bounce force to 100");
+        }
+
         if (groundCheckRadius <= 0)
         {
             groundCheckRadius = 0.05f;
@@ -90,6 +100,8 @@ public class Player : MonoBehaviour
             if (verbose)
                 Debug.Log("Ground check transform is not set, please create empty gameobject and assign to groundcheck");
         }
+
+        
     }
 
     // Update is called once per frame
@@ -142,5 +154,16 @@ public class Player : MonoBehaviour
         
         jumpForce /= 2;
         coroutineRunning = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Squish"))
+        {
+            collision.gameObject.GetComponentInParent<EnemyWalker>().IsSquished();
+            rb.velocity = Vector2.zero;
+            rb.AddForce(Vector2.up * bounceForce);
+            Destroy(collision.gameObject);
+        }
     }
 }

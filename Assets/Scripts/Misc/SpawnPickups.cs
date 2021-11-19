@@ -8,7 +8,7 @@ public class SpawnPickups : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Instantiate(pickupPrefabArray[0], transform.position, transform.rotation);
+        Instantiate(pickupPrefabArray[Random.Range(0 , pickupPrefabArray.Length)], transform.position, transform.rotation);
     }
 
     // Update is called once per frame
