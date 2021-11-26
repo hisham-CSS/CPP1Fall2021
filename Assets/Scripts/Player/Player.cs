@@ -21,39 +21,7 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     float groundCheckRadius;
-
-
-    int _score = 0;
-    int _lives = 1;
-
-    public int maxLives = 3;
-
-    public int score
-    {
-        get { return _score; }
-        set 
-        { 
-            _score = value;
-            Debug.Log("Score changed to " + _score);
-        }
-    }
-
-    public int lives
-    {
-        get { return _lives; }
-        set 
-        { 
-            _lives = value;
-            if (_lives > maxLives)
-                _lives = maxLives;
-
-            //if (_lives < 0)
-                //gameover stuff can go here
-
-            Debug.Log("Lives changed to " + _lives);
-        }
-    }
-
+        
     public LayerMask isGroundLayer;
     public Transform groundCheck;
 

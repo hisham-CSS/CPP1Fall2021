@@ -38,11 +38,11 @@ public class Pickup : MonoBehaviour
                     curPlayer.StartJumpForceChange();
                     break;
                 case CollectibleType.SCORE:
-                    curPlayer.score += ScoreValue;
+                    GameManager.instance.score += ScoreValue;
                     break;
                 case CollectibleType.LIFE:
                     Debug.Log("Life Collected");
-                    curPlayer.lives++;
+                    GameManager.instance.lives++;
                     break;
             }
 

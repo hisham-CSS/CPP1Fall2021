@@ -40,7 +40,15 @@ public class Projectile : MonoBehaviour
 
                 Destroy(gameObject);
             }
-            
+        }
+
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            if (gameObject.CompareTag("EnemyProjectile"))
+            {
+                GameManager.instance.lives--;
+                Destroy(gameObject);
+            }
         }
         //if (collision.gameObject.layer == 3)
         //    Destroy(gameObject);
