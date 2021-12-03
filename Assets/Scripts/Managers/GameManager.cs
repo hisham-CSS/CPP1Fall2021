@@ -6,6 +6,8 @@ using UnityEditor;
 
 public class GameManager : MonoBehaviour
 {
+    public CanvasManager currentCanvas;
+    bool isWinConditionMet = false;
     static GameManager _instance = null;
     public static GameManager instance
     {
@@ -37,6 +39,9 @@ public class GameManager : MonoBehaviour
         get { return _lives; }
         set
         {
+            if (!currentCanvas)
+                currentCanvas = FindObjectOfType<CanvasManager>();
+
             _lives = value;
             if (_lives > maxLives)
                 _lives = maxLives;
@@ -54,7 +59,11 @@ public class GameManager : MonoBehaviour
                 SpawnPlayer(currentLevel.spawnPoint);
             }
 
+            if (currentCanvas)
+                currentCanvas.SetLivesText(_lives.ToString());
+
             Debug.Log("Lives changed to " + _lives);
+
         }
     }
     // Start is called before the first frame update
@@ -69,6 +78,9 @@ public class GameManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(this);
         }
+
+        if (!currentCanvas)
+            currentCanvas = FindObjectOfType<CanvasManager>();
     }
 
     // Update is called once per frame
@@ -79,6 +91,8 @@ public class GameManager : MonoBehaviour
             if (SceneManager.GetActiveScene().name == "MainMenu")
                 SceneManager.LoadScene("SampleScene");
             else if (SceneManager.GetActiveScene().name == "SampleScene")
+                SceneManager.LoadScene("EndScene");
+            else if (SceneManager.GetActiveScene().name == "EmdScene")
                 SceneManager.LoadScene("MainMenu");
         }
 
@@ -96,6 +110,21 @@ public class GameManager : MonoBehaviour
         #endif
     }
 
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene("SampleScene");
+    }
+
+    public void ReturnToTitle()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+    public void EndGame(bool isComplete)
+    {
+        isWinConditionMet = isComplete;
+        SceneManager.LoadScene("EndScene");       
+    }
     public void SpawnPlayer(Transform spawnLocation)
     {
         playerInstance = Instantiate(playerPrefab, spawnLocation.position, spawnLocation.rotation);
