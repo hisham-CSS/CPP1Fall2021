@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 4065286838446443208}
   - component: {fileID: 4065286838446443211}
   - component: {fileID: 4065286838446443214}
+  - component: {fileID: -7529844687009437092}
   - component: {fileID: 5381119712322425935}
   m_Layer: 0
   m_Name: Player
@@ -160,6 +161,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   verbose: 0
   isGrounded: 0
+  jumpClip: {fileID: 8300000, guid: 7784e42b660c5ee4dbd8e9405abccfa5, type: 3}
+  soundFXGroup: {fileID: -5112415747979042599, guid: 1fff5fd49b8c3c8428cbbab00ba4ddbb, type: 2}
   speed: 0
   jumpForce: 0
   bounceForce: 150
@@ -208,6 +211,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-7529844687009437092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4065286838446443213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c53048b7dc3878947a05c06fa0408a2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5381119712322425935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,6 +236,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   verbose: 0
+  fireClip: {fileID: 8300000, guid: dab6abe3723e8b041868b13b9cbbedab, type: 3}
+  soundFXGroup: {fileID: -5112415747979042599, guid: 1fff5fd49b8c3c8428cbbab00ba4ddbb, type: 2}
   spawnPointLeft: {fileID: 913280110163797288}
   spawnPointRight: {fileID: 1507235628531459585}
   projectileSpeed: 10

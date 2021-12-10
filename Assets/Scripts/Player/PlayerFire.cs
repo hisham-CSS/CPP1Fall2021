@@ -1,14 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 [RequireComponent(typeof(Player))]
 public class PlayerFire : MonoBehaviour
 {
     public bool verbose;
+    public AudioClip fireClip;
+    public AudioMixerGroup soundFXGroup;
 
     SpriteRenderer sr;
     Animator anim;
+    PlayerSounds ps;
 
     public Transform spawnPointLeft;
     public Transform spawnPointRight;
@@ -25,6 +29,7 @@ public class PlayerFire : MonoBehaviour
 
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        ps = GetComponent<PlayerSounds>();
 
         if (projectileSpeed <= 0)
             projectileSpeed = 7.0f;
@@ -55,6 +60,9 @@ public class PlayerFire : MonoBehaviour
             Projectile projectileInstance = Instantiate(projectilePrefab, spawnPointRight.position, spawnPointRight.rotation);
             projectileInstance.speed = projectileSpeed;
         }
+
+        if (fireClip)
+            ps.Play(fireClip, soundFXGroup);
         
     }
 }

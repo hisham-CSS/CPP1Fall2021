@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Pickup : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class Pickup : MonoBehaviour
     }
 
     [SerializeField] CollectibleType currentCollectible;
+    [SerializeField] AudioClip myClip;
+    [SerializeField] AudioMixerGroup soundFXGroup;
+
     public int ScoreValue;
 
     // Start is called before the first frame update
@@ -31,6 +35,9 @@ public class Pickup : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             Player curPlayer = collision.gameObject.GetComponent<Player>();
+            PlayerSounds ps = collision.gameObject.GetComponent<PlayerSounds>();
+
+            ps.Play(myClip, soundFXGroup);
 
             switch (currentCollectible)
             {

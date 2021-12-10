@@ -97,6 +97,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentCollectible: 0
+  myClip: {fileID: 8300000, guid: 5463c387196c8de4c9bb1ad6861145b4, type: 3}
+  soundFXGroup: {fileID: -5112415747979042599, guid: 1fff5fd49b8c3c8428cbbab00ba4ddbb, type: 2}
   ScoreValue: 0
 --- !u!61 &5519103111881860291
 BoxCollider2D:

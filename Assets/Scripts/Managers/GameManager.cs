@@ -42,9 +42,18 @@ public class GameManager : MonoBehaviour
             if (!currentCanvas)
                 currentCanvas = FindObjectOfType<CanvasManager>();
 
+            if (_lives < value)
+            { 
+                _lives = value;
+                return;
+            }
+
             _lives = value;
             if (_lives > maxLives)
+            {
                 _lives = maxLives;
+                return;
+            }
 
             if (_lives < 0)
             {
