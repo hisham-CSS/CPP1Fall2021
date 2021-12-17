@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
             }
 
             if (currentCanvas)
-                currentCanvas.SetLivesText(_lives.ToString());
+                currentCanvas.SetLivesText(_lives);
 
             Debug.Log("Lives changed to " + _lives);
 

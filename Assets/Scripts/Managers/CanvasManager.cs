@@ -22,6 +22,9 @@ public class CanvasManager : MonoBehaviour
     public Text livesText;
     public Text volSliderText;
 
+    [Header("Images")]
+    public Image[] hearts;
+
     [Header("Slider")]
     public Slider volSlider;
 
@@ -48,9 +51,18 @@ public class CanvasManager : MonoBehaviour
 
     }
 
-    public void SetLivesText(string livesValue)
+    public void SetLivesText(int livesValue)
     {
-        livesText.text = livesValue;
+
+        //livesText.text = livesValue.ToString();
+
+        for (int i = 0; i < hearts.Length; i++)
+        {
+            if (i < livesValue)
+                hearts[i].enabled = true;
+            else
+                hearts[i].enabled = false;
+        }
     }
 
     void ReturnToGame()
